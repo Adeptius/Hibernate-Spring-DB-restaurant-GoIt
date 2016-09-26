@@ -6,19 +6,20 @@ import javax.persistence.*;
 
 @Entity // Этот обьект - строка в БД
 @Table(name = "employee") // имя таблицы
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Employee {
 
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    private Long id;
+    protected Long id;
 
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "surname")
-    private String surname;
+    protected String surname;
 
     @Column(name = "phone_number")
     private String phoneNumber;

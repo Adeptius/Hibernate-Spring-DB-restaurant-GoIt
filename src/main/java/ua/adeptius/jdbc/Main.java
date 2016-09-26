@@ -48,6 +48,8 @@ public class Main {
             dishController.initDishes();
             employeeController.initEmployees();
             orderController.initOrders();
+
+            employeeController.getAllEmployees().forEach(System.out::println);
         }
     }
 

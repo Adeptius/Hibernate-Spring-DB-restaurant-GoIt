@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.adeptius.jdbc.model.Employee;
 import ua.adeptius.jdbc.dao.EmployeeDao;
 import ua.adeptius.jdbc.model.Position;
+import ua.adeptius.jdbc.model.Waiter;
 
 import java.util.HashSet;
 import java.util.List;

@@ -76,7 +76,7 @@ public class OrderController {
 
         createOrder("Mary", dishes2, 2);
 
-        printAllOrders();
+        //printAllOrders();
 
     }
 }
