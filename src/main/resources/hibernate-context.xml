@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--указание где находится файл с настройками jdbc-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="classpath:jdbc.properties"/>
+    <!--ConnectionPool-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          p:driverClass="${jdbc.driver.class}"
+          p:jdbcUrl="${jdbc.url}"
+          p:user="${jdbc.user}"
+          p:password="${jdbc.password}"
+          p:minPoolSize="${jdbc.min.connections}"
+          p:maxPoolSize="${jdbc.max.connections}"
+          p:acquireIncrement="${jdbc.acquire.increment}"/>
+
+    <!--Фабрика сессий. Предоставляет доступ к гибернейту-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:packagesToScan="ua.adeptius.jdbc.model"
+          p:hibernateProperties="hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect">
+    </bean>
+
+    <!--Добавляю гибернейтовский менеджер транзакций-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory"/>
+
+    <!--Добавляю поддержку аннотаций в транзакциях-->
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+
+</beans>

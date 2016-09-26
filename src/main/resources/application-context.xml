@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="main" class="ua.adeptius.jdbc.Main"
+          p:employeeController-ref="EmployeeController"
+          p:dishController-ref="dishController"
+          p:orderController-ref="orderController"/>
+
+
+    <bean id="employeeDao" class="ua.adeptius.jdbc.dao.hibernate.HEmployeeDao"
+          p:sessionFactory-ref="sessionFactory"/>
+    <bean id="dishDao" class="ua.adeptius.jdbc.dao.hibernate.HDishDao"
+          p:sessionFactory-ref="sessionFactory"/>
+    <bean id="orderDao" class="ua.adeptius.jdbc.dao.hibernate.HOrderDao"
+          p:sessionFactory-ref="sessionFactory"/>
+
+    <bean id="EmployeeController" class="ua.adeptius.jdbc.controllers.EmployeeController"
+          p:employeeDao-ref="employeeDao"/>
+    <bean id="dishController" class="ua.adeptius.jdbc.controllers.DishController"
+          p:dishDao-ref="dishDao"/>
+    <bean id="orderController" class="ua.adeptius.jdbc.controllers.OrderController"
+          p:dishDao-ref="dishDao"
+          p:employeeDao-ref="employeeDao"
+          p:orderDao-ref="orderDao"/>
+
+
+</beans>
