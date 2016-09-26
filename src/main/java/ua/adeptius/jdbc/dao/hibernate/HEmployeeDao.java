@@ -9,6 +9,7 @@ import ua.adeptius.jdbc.dao.EmployeeDao;
 
 import java.util.List;
 
+@SuppressWarnings("JpaQlInspection")
 public class HEmployeeDao implements EmployeeDao {
 
     private SessionFactory sessionFactory;
@@ -18,7 +19,6 @@ public class HEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    @Transactional // Включаем поддержку сессий
     public void save(Employee employee) {
         sessionFactory.getCurrentSession().save(employee);
     }
@@ -38,18 +38,17 @@ public class HEmployeeDao implements EmployeeDao {
 
     @Override
     public List<Employee> findAll() {
-
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select e from Employee e").list();
     }
 
     @Override
-    public void remove(Employee employee) {
-        sessionFactory.getCurrentSession().delete(employee);
+    public void removeAll() {
+        sessionFactory.getCurrentSession().createQuery("delete from Employee").executeUpdate();
     }
 
     @Override
-    public void removeAll() {
-        sessionFactory.getCurrentSession().createQuery("delete from Employee").executeUpdate();
+    public void remove(Employee employee) {
+        sessionFactory.getCurrentSession().delete(employee);
     }
 }

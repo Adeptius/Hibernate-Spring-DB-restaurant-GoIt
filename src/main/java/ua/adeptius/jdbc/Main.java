@@ -39,15 +39,15 @@ public class Main {
 
     }
 
-    void init(){
+    public void init(){
         if (reInit){
             orderController.removeAllOrders();
             dishController.removeAllDishes();
             employeeController.removeAllEmployee();
 
-            orderController.initOrders();
             dishController.initDishes();
             employeeController.initEmployees();
+            orderController.initOrders();
         }
     }
 

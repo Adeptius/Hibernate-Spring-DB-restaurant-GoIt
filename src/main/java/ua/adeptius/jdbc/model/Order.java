@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class Order {
 
     @Id
     @GeneratedValue(generator = "increment")

@@ -1,14 +1,15 @@
 package ua.adeptius.jdbc.dao;
 
-import ua.adeptius.jdbc.model.Orders;
+import ua.adeptius.jdbc.model.Order;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    void save(Orders orders);
+    void save(Order order);
 
-    List<Orders> findAllOrders();
+    List<Order> findAllOrders();
 
     void removeAll();
+
 }

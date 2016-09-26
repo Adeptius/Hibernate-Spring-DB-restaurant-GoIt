@@ -5,7 +5,7 @@ import ua.adeptius.jdbc.dao.DishDao;
 import ua.adeptius.jdbc.dao.EmployeeDao;
 import ua.adeptius.jdbc.dao.OrderDao;
 import ua.adeptius.jdbc.model.Dish;
-import ua.adeptius.jdbc.model.Orders;
+import ua.adeptius.jdbc.model.Order;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,12 +24,12 @@ public class OrderController {
     @Transactional
     public void createOrder(String waiterName,
                             List<String> dishes, int tableNumber){
-        Orders orders = new Orders();
-        orders.setWaiter(employeeDao.findByName(waiterName));
-        orders.setDishes(createDishes(dishes));
-        orders.setTableNumber(tableNumber);
-        orders.setOrderDate(new Date());
-        orderDao.save(orders);
+        Order order = new Order();
+        order.setWaiter(employeeDao.findByName(waiterName));
+        order.setDishes(createDishes(dishes));
+        order.setTableNumber(tableNumber);
+        order.setOrderDate(new Date());
+        orderDao.save(order);
     }
 
     @Transactional
@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     @Transactional
-    public List<Orders> getAllOrders(){
+    public List<Order> getAllOrders(){
         return orderDao.findAllOrders();
     }
 
@@ -68,11 +68,15 @@ public class OrderController {
         List<String> dishes1 = new ArrayList<>();
         dishes1.add("Plov");
         dishes1.add("Salat");
-        createOrder("John", dishes1,1);
+        createOrder("John", dishes1, 1);
 
         List<String> dishes2 = new ArrayList<>();
         dishes2.add("Salat");
         dishes2.add("Potato");
-        createOrder("Mary", dishes2,2);
+
+        createOrder("Mary", dishes2, 2);
+
+        printAllOrders();
+
     }
 }

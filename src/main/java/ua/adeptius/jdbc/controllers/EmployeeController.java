@@ -27,24 +27,7 @@ public class EmployeeController {
 //        employee.setPosition(Position.WAITER);
 //        employee.setPhoneNumber("555-55-55");
 //        employee.setSalary(25000.0F);
-//        if (!allEmployees.contains(employee)) {
-//            employeeDao.save(employee);
-//        }
-    }
-
-    @Transactional
-    public List<Employee> getAllEmployees(){
-        return employeeDao.findAll();
-    }
-
-    @Transactional
-    public Employee getEmployeeByName(String name){
-        return employeeDao.findByName(name);
-    }
-
-    @Transactional
-    public void removeAllEmployee() {
-        employeeDao.removeAll();
+//        employeeDao.save(employee);
     }
 
     @Transactional
@@ -63,8 +46,23 @@ public class EmployeeController {
         mary.setName("Mary");
         mary.setSurname("Smith");
         mary.setPosition(Position.WAITER);
-        mary.setPhoneNumber("555-55-55");
-        mary.setSalary(25000.0F);
+        mary.setPhoneNumber("444-44-44");
+        mary.setSalary(30000.0F);
         employeeDao.save(mary);
+    }
+
+    @Transactional
+    public List<Employee> getAllEmployees(){
+        return employeeDao.findAll();
+    }
+
+    @Transactional
+    public Employee getEmployeeByName(String name){
+        return employeeDao.findByName(name);
+    }
+
+    @Transactional
+    public void removeAllEmployee() {
+        employeeDao.removeAll();
     }
 }

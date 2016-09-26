@@ -2,10 +2,11 @@ package ua.adeptius.jdbc.dao.hibernate;
 
 import org.hibernate.SessionFactory;
 import ua.adeptius.jdbc.dao.OrderDao;
-import ua.adeptius.jdbc.model.Orders;
+import ua.adeptius.jdbc.model.Order;
 
 import java.util.List;
 
+@SuppressWarnings("JpaQlInspection")
 public class HOrderDao implements OrderDao {
 
     private SessionFactory sessionFactory;
@@ -15,17 +16,18 @@ public class HOrderDao implements OrderDao {
     }
 
     @Override
-    public void save(Orders orders) {
-        sessionFactory.getCurrentSession().save(orders);
+    public void save(Order order) {
+        sessionFactory.getCurrentSession().save(order);
     }
 
     @Override
-    public List<Orders> findAllOrders() {
-        return sessionFactory.getCurrentSession().createQuery("select o from Orders o").list();
+    public List<Order> findAllOrders() {
+        return sessionFactory.getCurrentSession().createQuery("select o from Order o").list();
     }
 
     @Override
     public void removeAll() {
-        sessionFactory.getCurrentSession().createQuery("delete from Orders").executeUpdate();
+        sessionFactory.getCurrentSession().createQuery("delete from Order").executeUpdate();
     }
+
 }

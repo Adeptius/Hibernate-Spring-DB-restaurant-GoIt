@@ -17,4 +17,5 @@ public interface EmployeeDao {
     Employee findByName(String name);
 
     void removeAll();
+
 }

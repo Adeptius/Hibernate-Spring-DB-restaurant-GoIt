@@ -5,8 +5,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.adeptius.jdbc.dao.DishDao;
 import ua.adeptius.jdbc.model.Dish;
 import ua.adeptius.jdbc.model.DishCategory;
+import ua.adeptius.jdbc.model.Employee;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DishController {
 
@@ -37,6 +40,7 @@ public class DishController {
         dishDao.removeAll();
     }
 
+    @Transactional
     public void initDishes() {
         Dish plov = new Dish();
         plov.setName("Plov");
