@@ -6,7 +6,6 @@ import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ua.adeptius.jdbc.dao.DishDao;
 import ua.adeptius.jdbc.model.Dish;
-import ua.adeptius.jdbc.model.Employee;
 
 import java.util.List;
 
@@ -39,5 +38,10 @@ public class HDishDao implements DishDao {
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public void removeAll() {
+        sessionFactory.getCurrentSession().createQuery("delete from Dish").executeUpdate();
     }
 }

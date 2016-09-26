@@ -57,4 +57,22 @@ public class OrderController {
     public void setDishDao(DishDao dishDao) {
         this.dishDao = dishDao;
     }
+
+    @Transactional
+    public void removeAllOrders() {
+        orderDao.removeAll();
+    }
+
+    @Transactional
+    public void initOrders() {
+        List<String> dishes1 = new ArrayList<>();
+        dishes1.add("Plov");
+        dishes1.add("Salat");
+        createOrder("John", dishes1,1);
+
+        List<String> dishes2 = new ArrayList<>();
+        dishes2.add("Salat");
+        dishes2.add("Potato");
+        createOrder("Mary", dishes2,2);
+    }
 }

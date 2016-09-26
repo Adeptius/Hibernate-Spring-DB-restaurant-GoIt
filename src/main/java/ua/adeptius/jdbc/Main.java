@@ -14,6 +14,11 @@ public class Main {
     private EmployeeController employeeController;
     private DishController dishController;
     private OrderController orderController;
+    private boolean reInit;
+
+    public void setReInit(boolean reInit) {
+        this.reInit = reInit;
+    }
 
     public void setDishController(DishController dishController) {
         this.dishController = dishController;
@@ -31,20 +36,19 @@ public class Main {
     }
 
     private void start() {
-        employeeController.createEmployee();
-        dishController.createDish();
-        List<String> dishes1 = new ArrayList<>();
-        dishes1.add("Plov");
-        dishes1.add("Salat");
-        orderController.createOrder("John", dishes1,1);
 
-        List<String> dishes2 = new ArrayList<>();
-        dishes2.add("Salat");
-        dishes2.add("Potato");
+    }
 
-        orderController.createOrder("John", dishes2,2);
+    void init(){
+        if (reInit){
+            orderController.removeAllOrders();
+            dishController.removeAllDishes();
+            employeeController.removeAllEmployee();
 
-        orderController.printAllOrders();
+            orderController.initOrders();
+            dishController.initDishes();
+            employeeController.initEmployees();
+        }
     }
 
     public void setEmployeeController(EmployeeController employeeController) {

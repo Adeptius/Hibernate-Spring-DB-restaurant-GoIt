@@ -23,4 +23,9 @@ public class HOrderDao implements OrderDao {
     public List<Orders> findAllOrders() {
         return sessionFactory.getCurrentSession().createQuery("select o from Orders o").list();
     }
+
+    @Override
+    public void removeAll() {
+        sessionFactory.getCurrentSession().createQuery("delete from Orders").executeUpdate();
+    }
 }
