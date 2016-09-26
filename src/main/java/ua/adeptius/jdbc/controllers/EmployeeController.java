@@ -33,7 +33,7 @@ public class EmployeeController {
 
     @Transactional
     public void initEmployees() {
-        Employee john = new Employee();
+        Waiter john = new Waiter();
         john.setId(1L);
         john.setName("John");
         john.setSurname("Smith");
@@ -42,7 +42,7 @@ public class EmployeeController {
         john.setSalary(25000.0F);
         employeeDao.save(john);
 
-        Employee mary = new Employee();
+        Waiter mary = new Waiter();
         mary.setId(1L);
         mary.setName("Mary");
         mary.setSurname("Smith");
@@ -60,6 +60,11 @@ public class EmployeeController {
     @Transactional
     public Employee getEmployeeByName(String name){
         return employeeDao.findByName(name);
+    }
+
+    @Transactional
+    public void printAllEmployees() {
+        getAllEmployees().forEach(System.out::println);
     }
 
     @Transactional

@@ -6,12 +6,10 @@
 
 
     <bean id="main" class="ua.adeptius.jdbc.Main"
-          init-method="init"
           p:reInit="true"
           p:employeeController-ref="EmployeeController"
           p:dishController-ref="dishController"
           p:orderController-ref="orderController"/>
-
 
     <bean id="employeeDao" class="ua.adeptius.jdbc.dao.hibernate.HEmployeeDao"
           p:sessionFactory-ref="sessionFactory"/>

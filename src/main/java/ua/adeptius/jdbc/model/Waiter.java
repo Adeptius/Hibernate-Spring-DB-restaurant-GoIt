@@ -17,12 +17,16 @@ public class Waiter extends Employee {
 
     @Override
     public String toString() {
-        return "Waiter{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                "orders=" + (orders.size()) +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Waiter {\n");
+        sb.append("   id = ").append(id).append("\n");
+        sb.append("   name = ").append(name).append("\n");
+        sb.append("   surname = ").append(surname).append("\n");
+        sb.append("   orders = {\n");
+        orders.forEach(order -> sb.append("   	").append(order).append("\n"));
+        sb.append(" )\n");
+        sb.append(")\n");
+        return sb.toString();
     }
 
     public void setOrders(List<Order> orders) {

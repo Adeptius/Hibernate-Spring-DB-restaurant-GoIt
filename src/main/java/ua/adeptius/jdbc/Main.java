@@ -36,7 +36,7 @@ public class Main {
     }
 
     private void start() {
-
+        init();
     }
 
     public void init(){
@@ -49,7 +49,9 @@ public class Main {
             employeeController.initEmployees();
             orderController.initOrders();
 
-            employeeController.getAllEmployees().forEach(System.out::println);
+            employeeController.printAllEmployees();
+            //orderController.printAllOrders();
+//            employeeController.getAllEmployees().forEach(System.out::println);
         }
     }
 
