@@ -20,11 +20,12 @@ public class Order {
     @JoinColumn(name = "employee_id") // в колонку employee_id в таблице orders нужно записать id официанта.
     private Employee waiter;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "dish_to_order",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
+
     )
     private List<Dish> dishes;
 

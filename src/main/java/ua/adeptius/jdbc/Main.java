@@ -36,7 +36,7 @@ public class Main {
     }
 
     private void start() {
-        init();
+//        init();
     }
 
     public void init(){
