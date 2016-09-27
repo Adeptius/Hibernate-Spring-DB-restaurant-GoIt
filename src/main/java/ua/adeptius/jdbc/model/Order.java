@@ -20,7 +20,7 @@ public class Order {
     @JoinColumn(name = "employee_id") // в колонку employee_id в таблице orders нужно записать id официанта.
     private Employee waiter;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL) //fetch = FetchType.EAGER
     @JoinTable(
             name = "dish_to_order",
             joinColumns = @JoinColumn(name = "order_id"),

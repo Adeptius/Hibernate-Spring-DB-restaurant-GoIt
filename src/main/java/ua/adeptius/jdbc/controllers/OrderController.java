@@ -5,6 +5,7 @@ import ua.adeptius.jdbc.dao.DishDao;
 import ua.adeptius.jdbc.dao.EmployeeDao;
 import ua.adeptius.jdbc.dao.OrderDao;
 import ua.adeptius.jdbc.model.Dish;
+import ua.adeptius.jdbc.model.DishCategory;
 import ua.adeptius.jdbc.model.Order;
 
 import java.util.ArrayList;
@@ -73,10 +74,30 @@ public class OrderController {
         List<String> dishes2 = new ArrayList<>();
         dishes2.add("Salat");
         dishes2.add("Potato");
+        createOrder("John", dishes2, 2);
 
-        createOrder("Mary", dishes2, 2);
+        List<String> dishes3 = new ArrayList<>();
+        dishes2.add("Plov");
+        dishes2.add("Potato");
+        createOrder("Mary", dishes3, 3);
 
-        //printAllOrders();
+        orderDao.save(createOrderWithIceCream());
+    }
+
+    private Order createOrderWithIceCream() {
+        List<Dish> dishes4 = new ArrayList<>();
+        Dish iceCream = new Dish();
+        iceCream.setName("Ice Cream");
+        iceCream.setCategory(DishCategory.DESERT);
+        iceCream.setPrice(3.0F);
+        dishes4.add(iceCream);
+
+        Order order = new Order();
+        order.setWaiter(employeeDao.findByName("Mary"));
+        order.setDishes(dishes4);
+        order.setTableNumber(4);
+        order.setOrderDate(new Date());
+        return order;
 
     }
 }
