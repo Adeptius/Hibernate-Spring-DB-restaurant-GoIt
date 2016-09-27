@@ -49,7 +49,9 @@ public class Main {
             employeeController.initEmployees();
             orderController.initOrders();
 
-            employeeController.printAllEmployees();
+            employeeController.printEmployee(2);
+
+            //employeeController.printAllEmployees();
             //orderController.printAllOrders();
 //            employeeController.getAllEmployees().forEach(System.out::println);
         }

@@ -11,8 +11,9 @@ import java.util.List;
 public class Waiter extends Employee {
 
     //@Fetch(FetchMode.JOIN)
-    @OneToMany(fetch = FetchType.EAGER)//fetch = FetchType.LAZY
+    @OneToMany(fetch = FetchType.LAZY)//fetch = FetchType.LAZY
     @JoinColumn(name = "employee_id")
+    @Fetch(FetchMode.SELECT)  //
     private List<Order> orders;
 
     @Override

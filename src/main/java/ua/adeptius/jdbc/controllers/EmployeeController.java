@@ -71,4 +71,9 @@ public class EmployeeController {
     public void removeAllEmployee() {
         employeeDao.removeAll();
     }
+
+    @Transactional
+    public void printEmployee(long i) {
+        System.out.println(employeeDao.load(i));
+    }
 }
